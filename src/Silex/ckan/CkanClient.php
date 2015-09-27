@@ -35,6 +35,9 @@ class CkanClient extends Client {
         if (!empty($config['apiKey'])){
             $client->defaultHeaders->set('X-CKAN-API-Key', $config['apiKey']);
         }
+        if (!$config['verify']) {
+            $client->setDefaultOption('verify', false);
+        }
 
         // Attach a service description to the client
         $description = ServiceDescription::factory(__DIR__ . '/service.json');
